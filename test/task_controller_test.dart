@@ -22,5 +22,25 @@ void main() {
       controller.tasks.firstWhere((task) => task.id == 'task-2').status,
       TaskStatus.inProgress,
     );
+    controller.cycleStatus('task-2');
+    expect(
+      controller.tasks.firstWhere((task) => task.id == 'task-2').status,
+      TaskStatus.done,
+    );
+    controller.cycleStatus('task-2');
+    expect(
+      controller.tasks.firstWhere((task) => task.id == 'task-2').status,
+      TaskStatus.todo,
+    );
+  });
+
+  test('filters visible tasks by workflow status', () async {
+    final controller = TaskController(MockTaskRepository());
+    await controller.load();
+
+    controller.setFilter(TaskFilter.done);
+
+    expect(controller.visibleTasks, hasLength(1));
+    expect(controller.visibleTasks.single.status, TaskStatus.done);
   });
 }

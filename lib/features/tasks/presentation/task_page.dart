@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../domain/task_models.dart';
 import 'task_card.dart';
 import 'task_controller.dart';
 
@@ -133,7 +134,19 @@ class TaskPage extends StatelessWidget {
                           for (final task in controller.visibleTasks) ...[
                             TaskCard(
                               task: task,
-                              onTap: () => controller.cycleStatus(task.id),
+                              onTap: () {
+                                final nextStatus = controller.cycleStatus(task.id);
+                                if (nextStatus != null) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        '${task.title} moved to ${nextStatus.label}.',
+                                      ),
+                                      duration: const Duration(milliseconds: 1200),
+                                    ),
+                                  );
+                                }
+                              },
                             ),
                             const SizedBox(height: 10),
                           ],
@@ -141,7 +154,7 @@ class TaskPage extends StatelessWidget {
                         Text(
                           'Tip: tap a task to move it through its workflow.',
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: Colors.white54,
+                            color: theme.colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ],

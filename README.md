@@ -4,7 +4,9 @@ A focused Flutter task manager built with the same documentation-first standard 
 
 ## Features
 
-The app includes a progress summary, task filtering by workflow status, priority indicators, and tap-to-cycle task transitions. The current data source is a mock repository so the UI can be connected to an API or local database without changing the presentation layer.
+The app includes a progress summary, task filtering by workflow status, visible status and priority labels, accessible tap-to-cycle task transitions, and confirmation feedback. The current data source is an in-memory mock repository, so changes reset on refresh; the UI can be connected to an API or local database without changing the presentation layer.
+
+This repository is presented as a web-first architecture and interaction prototype. Android release signing and persistence are intentionally left for a production integration.
 
 ## Run
 

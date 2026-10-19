@@ -51,7 +51,8 @@ class TaskController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void cycleStatus(String taskId) {
+  TaskStatus? cycleStatus(String taskId) {
+    TaskStatus? nextStatus;
     _tasks = _tasks.map((task) {
       if (task.id != taskId) return task;
       final next = switch (task.status) {
@@ -59,8 +60,10 @@ class TaskController extends ChangeNotifier {
         TaskStatus.inProgress => TaskStatus.done,
         TaskStatus.done => TaskStatus.todo,
       };
+      nextStatus = next;
       return task.copyWith(status: next);
     }).toList();
-    notifyListeners();
+    if (nextStatus != null) notifyListeners();
+    return nextStatus;
   }
 }

@@ -1,11 +1,11 @@
 {
-    "name": "flutter_task_manager",
-    "short_name": "flutter_task_manager",
+    "name": "Task Manager",
+    "short_name": "Task Manager",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#101114",
+    "theme_color": "#9BE15D",
+    "description": "A responsive Flutter task dashboard with workflow filters and progress tracking.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
